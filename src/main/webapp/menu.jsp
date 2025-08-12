@@ -8,11 +8,11 @@
 </head>
 <body>
 
-	<form action="TaskRegisterServlet" method="POST">
+	<form action="TaskRegisterServlet" method="GET">
 		<input type="submit" value="タスク登録画面"><br>
 	</form>
 	
-	<form action="TaskListServlet" method="POST">
+	<form action="TaskListServlet" method="GET">
 		<input type="submit" value="タスク一覧表示画面"><br>
 		</form>
 	

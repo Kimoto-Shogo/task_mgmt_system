@@ -4,15 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ログアウト画面</title>
+<title>ログイン失敗画面</title>
 </head>
 <body>
-<h2>ログアウトしました</h2>
-
-	<form action="login.jsp" method="POST">
+<h2>ログインに失敗しました</h2>
+<form action="login.jsp" method="post">
 		<input type="submit" value="ログイン画面へ">
 	</form>
-
 
 </body>
 </html>
