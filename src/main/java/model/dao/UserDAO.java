@@ -38,31 +38,25 @@ public class UserDAO {
 	
 	
 	
-	public UserBean passwordUpdate(UserBean bean) throws ClassNotFoundException, SQLException {
+	public int passwordUpdate(UserBean bean) throws ClassNotFoundException, SQLException {
 		
+		int count = 0;
 		String sql = "UPDATE m_user SET password = ? WHERE user_id = ? AND user_name = ?";
 		
-		UserBean userbean = new UserBean();
 
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)) {
 
-			pstmt.setString(1, bean.getPassword());//プレースホルダにbeanの値を入れてあげる。
-			pstmt.setString(2, bean.getUser_id());
-			pstmt.setString(3, bean.getUser_name());
-			ResultSet res = pstmt.executeQuery();//sqlの実行
-
-			if (res.next()) {//一回の呼び出しならif文でOK
-
-				//getしたDBのカラム（user_id）などをuserbeanにsetしてあげる
-				userbean.setUser_id(res.getString("user_id"));
-				userbean.setPassword(res.getString("password"));
-				userbean.setUser_name(res.getString("user_name"));
-			}
+			pstmt.setString(1,bean.getPassword());//プレースホルダにbeanの値を入れてあげる。
+			pstmt.setString(2,bean.getUser_id());
+			pstmt.setString(3,bean.getUser_name());
+			
+			count = pstmt.executeUpdate();//sqlの実行
+			
 		}
 
 		
-		return userbean;
+		return count;
 		
 	}
 	
