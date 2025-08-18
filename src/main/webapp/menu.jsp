@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<form action="task-register-Servlet" method="GET">
+
 		<input type="submit" value="タスク登録画面"><br>
 	</form>
 	
