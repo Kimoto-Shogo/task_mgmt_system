@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import model.entity.CategoryBean;
 import model.entity.StatusBean;
+import model.entity.TaskBean;
 
 public class TaskRegisterDAO {
 
@@ -58,4 +60,25 @@ public class TaskRegisterDAO {
 		}
 	}
 
+	//タスクの登録をして、成功か失敗を"judg"で判定
+	public int register(TaskBean tb) throws ClassNotFoundException, SQLException {
+		int judge = 0;
+		String sql = "INSERT INTO t_task (task_name , category_id , limit_date , user_id , status_code , memo) VALUES (? , ? , ? , ? , ? , ?);";
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) {
+			
+			//プレースフォルダ("?")に値をセット
+			pstmt.setString(1 , tb.getTask_name());
+			pstmt.setInt(2 , tb.getCategory_id());
+			pstmt.setDate(3 , tb.getLimit_date());
+			pstmt.setString(4 ,tb.getUser_id());
+			pstmt.setString(5 ,tb.getStatus_code());
+			pstmt.setString(6 ,tb.getMemo());
+
+			//更新が成功された回数("1")が"judge"に代入される
+			judge = pstmt.executeUpdate();//SQL実行
+			
+		return judge;
+		}
+	}
 }

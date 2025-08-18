@@ -1,6 +1,7 @@
 package Servlet;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -15,6 +16,8 @@ import javax.servlet.http.HttpSession;
 import model.dao.TaskRegisterDAO;
 import model.entity.CategoryBean;
 import model.entity.StatusBean;
+import model.entity.TaskBean;
+import model.entity.UserBean;
 
 /**
  * Servlet implementation class TaskRegisterServlet
@@ -54,7 +57,49 @@ public class TaskRegisterServlet extends HttpServlet {
 	}
 
 	
+	//タスク登録
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		//"task_register.jsp"から値を受け取る
+		String taskname = request.getParameter("task_name");
+		int categoryid = Integer.parseInt(request.getParameter("category_id"));
+		Date limit = Date.valueOf(request.getParameter("limit"));//String型からsqlのDate型に直す
+		String status = request.getParameter("status");
+		String memo = request.getParameter("memo");
+		
+		//sessionから値を呼び出す
+		HttpSession session = request.getSession();
+		UserBean userbean = (UserBean)session.getAttribute("userbean");
+		String userid = userbean.getUser_id();
+		
+		//"TaskBean"に値を格納
+		TaskBean tb = new TaskBean();
+		tb.setTask_name(taskname);
+		tb.setCategory_id(categoryid);
+		tb.setLimit_date(limit);
+		tb.setUser_id(userid);
+		tb.setStatus_code(status);
+		tb.setMemo(memo);
+		
+		//タスク登録をして、成功か失敗を"judg"で判定
+		TaskRegisterDAO trdao = new TaskRegisterDAO();
+		int judge = 0;
+		String url = null;
+		try {
+			judge = trdao.register(tb);
+			
+			if(judge == 1) {
+				url = "task_register_success.jsp";
+			}else {
+				url = "task_register_failure.jsp";
+			}
+			
+		} catch (ClassNotFoundException | SQLException | NumberFormatException e) {
+			e.printStackTrace();
+		}
+		
+		RequestDispatcher rd = request.getRequestDispatcher(url);
+		rd.forward(request, response);
 		
 	}
 
