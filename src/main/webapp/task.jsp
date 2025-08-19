@@ -34,6 +34,8 @@
 			
 			<td><%= employee.getMemo()  %></td>
 			<td><a href="taskEditServlet?task_id=<%=employee.getTask_id()%>"><%=employee.getTask_id()%>編集</a></td>
+			
+			<td><a href="task-register-servlet?task_id=<%=employee.getTask_id()%>"><%=employee.getTask_id()%>削除</a></td>
 		
 		</tr>
 		
