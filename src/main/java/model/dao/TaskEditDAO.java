@@ -15,7 +15,7 @@ import model.entity.UserBean;
 public class TaskEditDAO {
 	
 	public int taskDataUpdate(TaskBean task) throws ClassNotFoundException, SQLException {
-		String sql = "UPDATE t_task SET  task_name = ?, category_id = ?, limit_date = ?, user_id = ?, status_code = ?, memo = ?,";
+		String sql = "UPDATE t_task SET task_name = ?, category_id = ?, limit_date = ?, user_id = ?, status_code = ?, memo = ? WHERE task_id = ?";
 		
 		
 		try (Connection con = ConnectionManager.getConnection();
@@ -27,6 +27,7 @@ public class TaskEditDAO {
 			ps.setString(4, task.getUser_id());
 			ps.setString(5, task.getStatus_code());
 			ps.setString(6, task.getMemo());
+			ps.setInt(7, task.getTask_id());
 			
 			return ps.executeUpdate();
 			}
@@ -52,7 +53,7 @@ public class TaskEditDAO {
 		
 	}
 	
-	public List<CategoryBean> CatedorySelect() throws ClassNotFoundException, SQLException {
+	public List<CategoryBean> CatedoryListSelect() throws ClassNotFoundException, SQLException {
 		String sql = "SELECT * FROM m_category";
 		List<CategoryBean> categoryList = new ArrayList<>();
 		try(Connection con = ConnectionManager.getConnection();
@@ -70,7 +71,7 @@ public class TaskEditDAO {
 		}
 	}
 	
-	public List<StatusBean> StatusSelect() throws ClassNotFoundException, SQLException {
+	public List<StatusBean> StatusListSelect() throws ClassNotFoundException, SQLException {
 		String sql = "SELECT * FROM m_status";
 		List<StatusBean> statusList = new ArrayList<>();
 		try(Connection con = ConnectionManager.getConnection();
@@ -79,12 +80,12 @@ public class TaskEditDAO {
 			
 			while(res.next()) {
 				StatusBean status = new StatusBean();
-				status.setStatus_code(res.getString("status_id"));
+				status.setStatus_code(res.getString("status_code"));
 				status.setStatus_name(res.getString("status_name"));
 				
 				statusList.add(status);
 			}
-		return null;
+		return statusList;
 		}
 	}
 
