@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h2>一覧表示画面</h2>
-	<form action="taskEditServlet" method="GET">
+	
 	<%
 		List<TaskBean> employeeList = (List<TaskBean>) request.getAttribute("employeeList");
 	%>
@@ -33,13 +33,15 @@
 			<td><%= employee.getStatus_name()  %></td>
 			
 			<td><%= employee.getMemo()  %></td>
-			
+			<td><a href="taskEditServlet?task_id=<%=employee.getTask_id()%>"><%=employee.getTask_id()%>編集</a></td>
+		
 		</tr>
-			
+		
 		<% } %>
+		
+		
 	</table>
-			<input type="submit" value="編集画面へ">
-		</form>
+			
 		
 </body>
 </html>
