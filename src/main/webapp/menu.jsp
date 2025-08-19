@@ -7,12 +7,7 @@
 <title>メニュー画面</title>
 </head>
 <body>
-<<<<<<< HEAD
 	<form action="task-register-servlet" method="GET">
-=======
-
-
->>>>>>> f867501a8130c0e2d3a317305aafa61709a66f33
 		<input type="submit" value="タスク登録画面"><br>
 	</form>
 	
