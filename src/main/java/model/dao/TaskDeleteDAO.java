@@ -7,7 +7,8 @@ import model.entity.TaskBean;
 public class TaskDeleteDAO {
 
 	public int delete(TaskBean taskbean) throws ClassNotFoundException, SQLException {
+		return 0;
 	
 		
-		
+	}	
 }
