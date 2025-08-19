@@ -59,7 +59,9 @@ public class TaskRegisterServlet extends HttpServlet {
 	
 	//タスク登録
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//エンコード
 		request.setCharacterEncoding("UTF-8");
+		
 		//"task_register.jsp"から値を受け取る
 		String taskname = request.getParameter("task_name");
 		int categoryid = Integer.parseInt(request.getParameter("category_id"));
