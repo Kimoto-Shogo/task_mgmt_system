@@ -52,7 +52,7 @@ public class TaskEditDAO {
 		
 	}
 	
-	public List<CategoryBean> CatedorySelect() throws ClassNotFoundException, SQLException {
+	public List<CategoryBean> CatedoryListSelect() throws ClassNotFoundException, SQLException {
 		String sql = "SELECT * FROM m_category";
 		List<CategoryBean> categoryList = new ArrayList<>();
 		try(Connection con = ConnectionManager.getConnection();
@@ -70,7 +70,7 @@ public class TaskEditDAO {
 		}
 	}
 	
-	public List<StatusBean> StatusSelect() throws ClassNotFoundException, SQLException {
+	public List<StatusBean> StatusListSelect() throws ClassNotFoundException, SQLException {
 		String sql = "SELECT * FROM m_status";
 		List<StatusBean> statusList = new ArrayList<>();
 		try(Connection con = ConnectionManager.getConnection();
