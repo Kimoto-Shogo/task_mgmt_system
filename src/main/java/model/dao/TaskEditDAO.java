@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.entity.CategoryBean;
+import model.entity.StatusBean;
 import model.entity.TaskBean;
 import model.entity.UserBean;
 
@@ -59,7 +61,7 @@ public class TaskEditDAO {
 			
 			while(res.next()) {
 				CategoryBean category = new CategoryBean();
-				category.setCategory_id(res.getString("category_id"));
+				category.setCategory_id(res.getInt("category_id"));
 				category.setCategory_name(res.getString("category_name"));
 				
 				categoryList.add(category);

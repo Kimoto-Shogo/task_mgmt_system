@@ -9,45 +9,37 @@
 </head>
 <body>
 	<h2>一覧表示画面</h2>
+	<form action="taskEditServlet" method="GET">
 	<%
 		List<TaskBean> employeeList = (List<TaskBean>) request.getAttribute("employeeList");
 	%>
 	<table border="1">
 		<tr>
-			<th>タスクID</th>
 			<th>タスク名</th>
-			<th>カテゴリID</th>
+			<th>カテゴリ名</th>
 			<th>期限</th>
-			<th>ユーザID</th>
-			<th>ステータスコード</th>
+			<th>ユーザ名</th>
+			<th>ステータス名</th>
 			<th>メモ</th>
-			<th>登録日時</th>
-			<th>更新日時</th>
 		</tr>
-		<% if (employeeList != null) {
-			employeeList = new ArrayList<>();%>
+		
 		<% for (TaskBean employee : employeeList) {%> 
 		<tr>
-			<td>
-			<a href="TaskListServlet?code=<%= employee.getTask_id() %>">
-			<%= employee.getTask_id() %></a>
-			</td>
 			<td><%= employee.getTask_name() %></td>
-			<td><%= employee.getCategory_id() %></td>
+			<td><%= employee.getCategory_name() %></td>
 			
 			<td><%= employee.getLimit_date() %></td>
-			<td><%= employee.getUser_id()  %></td>
-			<td><%= employee.getStatus_code()  %></td>
+			<td><%= employee.getUser_name()  %></td>
+			<td><%= employee.getStatus_name()  %></td>
 			
 			<td><%= employee.getMemo()  %></td>
-			<td><%= employee.getCreate_datetime()  %></td>
-			<td><%= employee.getUpdate_datetime()  %></td>
+			
 		</tr>
+			
 		<% } %>
-		<% } %>
-	</table><br>
-	<form action="menu.jsp">
-	<input type = "submit" value="メニュー画面へ">
-	</form>
+	</table>
+			<input type="submit" value="編集画面へ">
+		</form>
+		
 </body>
 </html>
