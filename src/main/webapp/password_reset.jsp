@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h2>パスワード再設定</h2>
-	<form action="" method="POST">
+	<form action="PasswordServlet" method="POST">
 		ユーザID：<input type="text" name="userid"><br> 
 		ユーザー名：<input type="text" name="username"><br>
 		新しいパスワード:<input type="password" name="password"><br>
