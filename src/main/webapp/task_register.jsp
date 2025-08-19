@@ -23,18 +23,18 @@
 		
 		<tr>	
 		<th>タスク名</th>
-		<td><input type = text name = task_name required></td>
+		<td><input type = text name = task_name size = 25 required><font color = "red">※必須項目</font></td>
 		</tr>
 		
 		<tr>
 		<th>カテゴリ名</th>
 		<td>
 		<select name = category_id required>
-			<option selected value = null hidden>カテゴリ名を選択してください</option>
+			<option value = "" selected disabled>カテゴリ名を選択してください</option>
 			<% for(CategoryBean cb : categorybean){%>
 				<option value = "<%= cb.getCategory_id()%>"><%= cb.getCategory_name()%></option>
 			<% } %>
-		</select>
+		</select><font color = "red">※必須項目</font>
 		</td>
 		</tr>
 		
@@ -46,7 +46,7 @@
 		<tr>
 		<th>ステータス</th>
 		<td>
-		<select name = status required>
+		<select name = status style="text-align:center" required>
 		<% for(StatusBean sb : statusbean){%>
 			<option value = "<%= sb.getStatus_code()%>"><%= sb.getStatus_name()%></option>
 		<% } %>
