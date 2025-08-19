@@ -61,6 +61,10 @@
 	</table><hr>
 	<input type = submit value = 登録>　
 	<input type = reset value = クリア>
+	</form><br>
+	
+	<form action = "menu.jsp">
+	<input type = submit value = メニュー画面へ>
 	</form>
 </body>
 </html>
