@@ -11,7 +11,8 @@
 	<h2>一覧表示画面</h2>
 	
 	<%
-		List<TaskBean> employeeList = (List<TaskBean>) request.getAttribute("employeeList");
+	@SuppressWarnings("unchecked")
+		List<TaskBean> taskList = (List<TaskBean>) session.getAttribute("taskList");
 	%>
 	<table border="1">
 		<tr>
@@ -23,19 +24,19 @@
 			<th>メモ</th>
 		</tr>
 		
-		<% for (TaskBean employee : employeeList) {%> 
+		<% for (TaskBean task : taskList) {%> 
 		<tr>
-			<td><%= employee.getTask_name() %></td>
-			<td><%= employee.getCategory_name() %></td>
+			<td><%= task.getTask_name() %></td>
+			<td><%= task.getCategory_name() %></td>
 			
-			<td><%= employee.getLimit_date() %></td>
-			<td><%= employee.getUser_name()  %></td>
-			<td><%= employee.getStatus_name()  %></td>
+			<td><%= task.getLimit_date() %></td>
+			<td><%= task.getUser_name()  %></td>
+			<td><%= task.getStatus_name()  %></td>
 			
-			<td><%= employee.getMemo()  %></td>
-			<td><a href="taskEditServlet?task_id=<%=employee.getTask_id()%>"><%=employee.getTask_id()%>編集</a></td>
+			<td><%= task.getMemo()  %></td>
+			<td><a href="taskEditServlet?task_id=<%=task.getTask_id()%>">編集</a></td>
 			
-			<td><a href="task-register-servlet?task_id=<%=employee.getTask_id()%>"><%=employee.getTask_id()%>削除</a></td>
+			<td><a href="task-register-servlet?task_id=<%=task.getTask_id()%>">削除</a></td>
 		
 		</tr>
 		

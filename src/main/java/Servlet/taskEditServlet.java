@@ -1,6 +1,7 @@
 package Servlet;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,13 +41,18 @@ public class taskEditServlet extends HttpServlet {
 		@SuppressWarnings("unchecked")
 		List<TaskBean> taskList = (ArrayList<TaskBean>)session.getAttribute("taskList");
 		
-		TaskBean updateTask = taskList.get(Integer.parseInt(request.getParameter("id")));
+		int task_id = Integer.parseInt(request.getParameter("task_id"));
 		
-		session.setAttribute("updateTask", updateTask);
+		for (TaskBean task : taskList) {
+			if (task.getTask_id()==task_id) {
+				session.setAttribute("updateTask", task);
+			}
+		}
+		
 		try {
 			session.setAttribute("categoryList",dao.CatedoryListSelect());
 			session.setAttribute("statusList",dao.StatusListSelect());
-			session.setAttribute("UserList",dao.UserListSelect());
+			session.setAttribute("userList",dao.UserListSelect());
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
@@ -59,8 +65,35 @@ public class taskEditServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		HttpSession session = request.getSession();
+		TaskEditDAO dao = new TaskEditDAO();
+		TaskBean updateTask = (TaskBean) session.getAttribute("updateTask");
+		
+		updateTask.setTask_name(request.getParameter("task_name"));
+		updateTask.setCategory_id(Integer.parseInt(request.getParameter("category_id")));
+		updateTask.setLimit_date(Date.valueOf(request.getParameter("limit_date")));
+		updateTask.setUser_id(request.getParameter("user_id"));
+		updateTask.setStatus_code(request.getParameter("status_code"));
+		updateTask.setMemo(request.getParameter("memo"));
+		
+		int resultnum = 0;
+		String url = "taskediterror.jsp";
+		try {
+			resultnum = dao.taskDataUpdate(updateTask);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			RequestDispatcher Dis = request.getRequestDispatcher(url);
+			Dis.forward(request, response);
+		}
+		
+		if (resultnum == 1) {
+			url = "taskeditsuccess.jsp";
+		}
+		RequestDispatcher Dis = request.getRequestDispatcher(url);
+		Dis.forward(request, response);
+		
 	}
 
 }
