@@ -12,6 +12,5 @@
 		<input type = "submit" value = タスク登録画面 formaction = "task-register-servlet">
 		<input type = "submit" value = メニュー画面 formaction = "menu.jsp">
 	</form>
-
 </body>
 </html>
