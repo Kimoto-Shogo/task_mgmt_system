@@ -8,7 +8,7 @@
 <title>一覧</title>
 </head>
 <body>
-	<h2>一覧表示画面</h2>
+	<h2>一覧表示画面</h2><hr><br>
 	
 	<%
 	@SuppressWarnings("unchecked")
@@ -36,15 +36,19 @@
 			<td><%= task.getMemo()  %></td>
 			<td><a href="taskEditServlet?task_id=<%=task.getTask_id()%>">編集</a></td>
 			
+
 			<td><a href="task-register-servlet?task_id=<%=task.getTask_id()%>">削除</a></td>
+
 		
 		</tr>
 		
 		<% } %>
 		
 		
-	</table>
-			
+	</table><br>
+		<form action = "menu.jsp" >
+		<input type ="submit" value="メニュー画面へ">
+		</form>
 		
 </body>
 </html>
