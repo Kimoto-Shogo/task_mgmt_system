@@ -53,6 +53,3 @@ INSERT INTO m_category(category_name) VALUE('新商品 B：改良プロジェク
 INSERT INTO m_status(status_code,status_name) VALUE('00','未着手');
 INSERT INTO m_status(status_code,status_name) VALUE('50','着手');
 INSERT INTO m_status(status_code,status_name) VALUE('99','完了');
-
-
-
