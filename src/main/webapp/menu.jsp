@@ -15,7 +15,7 @@
 		<input type="submit" value="タスク一覧表示画面"><br>
 	</form>
 	
-	<form action="logout.jsp" method="POST">
+	<form action="LogoutServlet" method="POST">
 	
 		<input type="submit" value="ログアウト"><br>
 	</form>

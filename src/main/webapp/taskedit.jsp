@@ -40,13 +40,13 @@
 	<form action="taskEditServlet" method="POST" >
 		<table>
 			<tr>
-				<td>タスクID</td><td><%= updateTask.getTask_id() %></td>
+				<td style="font-weight: bold;">タスクID</td><td><%= updateTask.getTask_id() %></td>
 			</tr>
 			<tr>
-				<td>タスク名</td><td><input type="text" name="task_name" value="<%=updateTask.getTask_name() %>" placeholder="タスク名" required></td>
+				<td style="font-weight: bold;">タスク名</td><td><input type="text" name="task_name" value="<%=updateTask.getTask_name() %>" placeholder="タスク名" required></td>
 			</tr>
 			<tr>
-				<td>カテゴリ</td>
+				<td style="font-weight: bold;">カテゴリ</td>
 				<td>
 					<select name="category_id" required>
 						<% for(CategoryBean category : categoryList){ %>
@@ -61,10 +61,10 @@
 				</td>
 			</tr>
 			<tr>
-				<td>期限</td><td><input type="date" name="limit_date" value="<%=updateTask.getLimit_date() %>" required></td>
+				<td style="font-weight: bold;">期限</td><td><input type="date" name="limit_date" value="<%=updateTask.getLimit_date() %>" required></td>
 			</tr>
 			<tr>
-				<td>担当者</td>
+				<td style="font-weight: bold;">担当者</td>
 				<td>
 					<select name="user_id" required>
 						<% for(UserBean user : userList){ %>
@@ -79,7 +79,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>ステータス</td>
+				<td style="font-weight: bold;">ステータス</td>
 				<td>
 					<select name="status_code" required>
 						<% for(StatusBean status : statusList){ %>
@@ -94,11 +94,14 @@
 				</td>
 			</tr>
 			<tr>
-				<td>メモ</td><td><textarea name="memo" placeholder="100文字まで" maxlength="100" ><%=updateTask.getMemo() %></textarea></td>
+				<td style="font-weight: bold;">メモ</td><td><textarea name="memo" placeholder="100文字まで" maxlength="100" ><%=updateTask.getMemo() %></textarea></td>
 			</tr>
 		</table>
 		<input type="submit" value="更新">
 		<input type="reset" value="取り消し">
+	</form>
+	<form action="menu.jsp" >
+		<input type="submit" value="メニューに戻る">
 	</form>
 </body>
 </html>
