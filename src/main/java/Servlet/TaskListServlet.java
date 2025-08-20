@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.dao.TaskListDAO;
 import model.entity.TaskBean;
@@ -21,21 +22,22 @@ public class TaskListServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
 
-		List<TaskBean> employeeList = new ArrayList<>();
+		List<TaskBean> taskList = new ArrayList<>();
 
 		// DAOの生成
 		TaskListDAO dao = new TaskListDAO();
 
 		try {
 			// DAOの利用
-			employeeList = dao.selectAll();
+			taskList = dao.selectAll();
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 
 		// リクエストスコープへの属性の設定
-		request.setAttribute("employeeList", employeeList);
+		session.setAttribute("taskList", taskList);
 
 		// リクエストの転送
 		RequestDispatcher rd = request.getRequestDispatcher("task.jsp");

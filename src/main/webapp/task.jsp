@@ -8,46 +8,47 @@
 <title>一覧</title>
 </head>
 <body>
-	<h2>一覧表示画面</h2>
+	<h2>一覧表示画面</h2><hr><br>
+	
 	<%
-		List<TaskBean> employeeList = (List<TaskBean>) request.getAttribute("employeeList");
+	@SuppressWarnings("unchecked")
+		List<TaskBean> taskList = (List<TaskBean>) session.getAttribute("taskList");
 	%>
 	<table border="1">
 		<tr>
-			<th>タスクID</th>
 			<th>タスク名</th>
-			<th>カテゴリID</th>
+			<th>カテゴリ名</th>
 			<th>期限</th>
-			<th>ユーザID</th>
-			<th>ステータスコード</th>
+			<th>ユーザ名</th>
+			<th>ステータス名</th>
 			<th>メモ</th>
-			<th>登録日時</th>
-			<th>更新日時</th>
 		</tr>
-		<% if (employeeList != null) {
-			employeeList = new ArrayList<>();%>
-		<% for (TaskBean employee : employeeList) {%> 
+		
+		<% for (TaskBean task : taskList) {%> 
 		<tr>
-			<td>
-			<a href="TaskListServlet?code=<%= employee.getTask_id() %>">
-			<%= employee.getTask_id() %></a>
-			</td>
-			<td><%= employee.getTask_name() %></td>
-			<td><%= employee.getCategory_id() %></td>
+			<td><%= task.getTask_name() %></td>
+			<td><%= task.getCategory_name() %></td>
 			
-			<td><%= employee.getLimit_date() %></td>
-			<td><%= employee.getUser_id()  %></td>
-			<td><%= employee.getStatus_code()  %></td>
+			<td><%= task.getLimit_date() %></td>
+			<td><%= task.getUser_name()  %></td>
+			<td><%= task.getStatus_name()  %></td>
 			
-			<td><%= employee.getMemo()  %></td>
-			<td><%= employee.getCreate_datetime()  %></td>
-			<td><%= employee.getUpdate_datetime()  %></td>
+			<td><%= task.getMemo()  %></td>
+			<td><a href="taskEditServlet?task_id=<%=task.getTask_id()%>">編集</a></td>
+			
+
+			<td><a href="task-register-servlet?task_id=<%=task.getTask_id()%>">削除</a></td>
+
+		
 		</tr>
+		
 		<% } %>
-		<% } %>
+		
+		
 	</table><br>
-	<form action="menu.jsp">
-	<input type = "submit" value="メニュー画面へ">
-	</form>
+		<form action = "menu.jsp" >
+		<input type ="submit" value="メニュー画面へ">
+		</form>
+		
 </body>
 </html>

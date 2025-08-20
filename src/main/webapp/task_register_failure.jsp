@@ -4,12 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>タスク登録失敗画面</title>
 </head>
 <body>
-	<h1>タスクを更新しました。</h1>
-		<form action="menu.jsp">
-			<input type="submit" value="メニューに戻る">
-		</form>
+
 </body>
 </html>

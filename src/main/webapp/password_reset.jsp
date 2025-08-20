@@ -12,7 +12,11 @@
 		ユーザID：<input type="text" name="userid"><br> 
 		ユーザー名：<input type="text" name="username"><br>
 		新しいパスワード:<input type="password" name="password"><br>
-		<input type="submit"value="再設定">
+		<input type="submit"value="再設定"><br>
+	</form>
+	
+	<form action="login.jsp" method="POST">
+		<input type="submit" value="ログイン画面へ">
 	</form>
 
 </body>
