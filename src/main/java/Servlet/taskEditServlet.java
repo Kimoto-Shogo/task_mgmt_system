@@ -37,6 +37,7 @@ public class taskEditServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		request.setCharacterEncoding("UTF-8");
 		TaskEditDAO dao = new TaskEditDAO();
 		@SuppressWarnings("unchecked")
 		List<TaskBean> taskList = (ArrayList<TaskBean>)session.getAttribute("taskList");
@@ -66,6 +67,7 @@ public class taskEditServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		request.setCharacterEncoding("UTF-8");
 		TaskEditDAO dao = new TaskEditDAO();
 		TaskBean updateTask = (TaskBean) session.getAttribute("updateTask");
 		
