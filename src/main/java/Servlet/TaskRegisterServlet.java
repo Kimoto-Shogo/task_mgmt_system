@@ -40,6 +40,17 @@ public class TaskRegisterServlet extends HttpServlet {
 		}
 		
 		
+		//ユーザ情報の取得
+		try {
+			List<UserBean> ub = trdao.user();
+			
+			//セッションでユーザ情報を保存
+			session.setAttribute("user", ub);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
 		//ステータス情報の取得
 		try {
 			List<StatusBean> sb = trdao.statuscode();
@@ -64,23 +75,19 @@ public class TaskRegisterServlet extends HttpServlet {
 		
 		//"task_register.jsp"から値を受け取る
 		String taskname = request.getParameter("task_name");
-		int categoryid = Integer.parseInt(request.getParameter("category_id"));
+		int category_id = Integer.parseInt(request.getParameter("category_id"));
 		Date limit = Date.valueOf(request.getParameter("limit"));//String型からsqlのDate型に直す
-		String status = request.getParameter("status");
+		String user_id = request.getParameter("user_id");
+		String status_code = request.getParameter("status_code");
 		String memo = request.getParameter("memo");
-		
-		//sessionから値を呼び出す
-		HttpSession session = request.getSession();
-		UserBean userbean = (UserBean)session.getAttribute("userbean");
-		String userid = userbean.getUser_id();
 		
 		//"TaskBean"に値を格納
 		TaskBean tb = new TaskBean();
 		tb.setTask_name(taskname);
-		tb.setCategory_id(categoryid);
+		tb.setCategory_id(category_id);
 		tb.setLimit_date(limit);
-		tb.setUser_id(userid);
-		tb.setStatus_code(status);
+		tb.setUser_id(user_id);
+		tb.setStatus_code(status_code);
 		tb.setMemo(memo);
 		
 		//タスク登録をして、成功か失敗を"judg"で判定
