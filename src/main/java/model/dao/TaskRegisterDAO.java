@@ -11,6 +11,7 @@ import java.util.List;
 import model.entity.CategoryBean;
 import model.entity.StatusBean;
 import model.entity.TaskBean;
+import model.entity.UserBean;
 
 public class TaskRegisterDAO {
 
@@ -35,7 +36,31 @@ public class TaskRegisterDAO {
 		return list;
 		}
 	}
+	
+	//ユーザ情報の取得("user_id" , "user_name")
+	public List<UserBean> user() throws SQLException, ClassNotFoundException {
+		String sql = "SELECT * FROM m_user";
+		List<UserBean> list = new ArrayList<>();
+		
+		try (Connection con = ConnectionManager.getConnection();
+				Statement stmt = con.createStatement();) {
 
+			//実行
+			ResultSet res = stmt.executeQuery(sql);
+
+			while (res.next()) {
+				UserBean ub = new UserBean();
+				ub.setUser_id(res.getString("user_id"));
+				ub.setUser_name(res.getString("user_name"));
+				
+				list.add(ub);
+				
+			}
+			
+		return list;
+		}
+	}
+	
 	
 	//ステータスの取得("status_code" , "status_name")
 	public List<StatusBean> statuscode() throws SQLException, ClassNotFoundException {
@@ -60,6 +85,7 @@ public class TaskRegisterDAO {
 		}
 	}
 
+	
 	//タスクの登録をして、成功か失敗を"judg"で判定
 	public int register(TaskBean tb) throws ClassNotFoundException, SQLException {
 		int judge = 0;
