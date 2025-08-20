@@ -23,14 +23,14 @@ import model.entity.UserBean;
 @WebServlet("/taskEditServlet")
 public class taskEditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public taskEditServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public taskEditServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,11 +39,11 @@ public class taskEditServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		@SuppressWarnings("unused")
 		UserBean user = null;
-		
+
 		if (session != null && (user = (UserBean)session.getAttribute("userbean")) == null) {
 			session = null;
 		}
-		
+
 		if(session == null) {
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 			return;
@@ -52,15 +52,15 @@ public class taskEditServlet extends HttpServlet {
 		TaskEditDAO dao = new TaskEditDAO();
 		@SuppressWarnings("unchecked")
 		List<TaskBean> taskList = (ArrayList<TaskBean>)session.getAttribute("taskList");
-		
+
 		int task_id = Integer.parseInt(request.getParameter("task_id"));
-		
+
 		for (TaskBean task : taskList) {
 			if (task.getTask_id()==task_id) {
 				session.setAttribute("updateTask", task);
 			}
 		}
-		
+
 		try {
 			session.setAttribute("categoryList",dao.CatedoryListSelect());
 			session.setAttribute("statusList",dao.StatusListSelect());
@@ -79,11 +79,11 @@ public class taskEditServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		@SuppressWarnings("unused")
 		UserBean user = null;
-		
+
 		if (session != null && (user = (UserBean)session.getAttribute("userbean")) == null) {
 			session = null;
 		}
-		
+
 		if(session == null) {
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 			return;
@@ -91,14 +91,14 @@ public class taskEditServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		TaskEditDAO dao = new TaskEditDAO();
 		TaskBean updateTask = (TaskBean) session.getAttribute("updateTask");
-		
+
 		updateTask.setTask_name(request.getParameter("task_name"));
 		updateTask.setCategory_id(Integer.parseInt(request.getParameter("category_id")));
 		updateTask.setLimit_date(Date.valueOf(request.getParameter("limit_date")));
 		updateTask.setUser_id(request.getParameter("user_id"));
 		updateTask.setStatus_code(request.getParameter("status_code"));
 		updateTask.setMemo(request.getParameter("memo"));
-		
+
 		int resultnum = 0;
 		String url = "taskediterror.jsp";
 		try {
@@ -109,12 +109,12 @@ public class taskEditServlet extends HttpServlet {
 			e.printStackTrace();
 			request.getRequestDispatcher(url).forward(request, response);
 		}
-		
+
 		if (resultnum == 1) {
 			url = "taskeditsuccess.jsp";
 		}
 		request.getRequestDispatcher(url).forward(request, response);
-		
+
 	}
 
 }
