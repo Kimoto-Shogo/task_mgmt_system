@@ -43,7 +43,7 @@
 				<td>タスクID</td><td><%= updateTask.getTask_id() %></td>
 			</tr>
 			<tr>
-				<td>タスク名</td><td><input type="text" name="task_name" value="<%=updateTask.getTask_name() %>" required></td>
+				<td>タスク名</td><td><input type="text" name="task_name" value="<%=updateTask.getTask_name() %>" placeholder="タスク名" required></td>
 			</tr>
 			<tr>
 				<td>カテゴリ</td>
@@ -64,7 +64,7 @@
 				<td>期限</td><td><input type="date" name="limit_date" value="<%=updateTask.getLimit_date() %>" required></td>
 			</tr>
 			<tr>
-				<td>ユーザ</td>
+				<td>担当者</td>
 				<td>
 					<select name="user_id" required>
 						<% for(UserBean user : userList){ %>
@@ -98,6 +98,7 @@
 			</tr>
 		</table>
 		<input type="submit" value="更新">
+		<input type="reset" value="取り消し">
 	</form>
 </body>
 </html>
