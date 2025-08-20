@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import model.dao.TaskEditDAO;
 import model.entity.TaskBean;
+import model.entity.UserBean;
 
 /**
  * Servlet implementation class taskEditServlet
@@ -36,7 +36,18 @@ public class taskEditServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
+		@SuppressWarnings("unused")
+		UserBean user = null;
+		
+		if (session != null && (user = (UserBean)session.getAttribute("userbean")) == null) {
+			session = null;
+		}
+		
+		if(session == null) {
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+			return;
+		}
 		request.setCharacterEncoding("UTF-8");
 		TaskEditDAO dao = new TaskEditDAO();
 		@SuppressWarnings("unchecked")
@@ -58,15 +69,25 @@ public class taskEditServlet extends HttpServlet {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-		RequestDispatcher dis = request.getRequestDispatcher("taskedit.jsp");
-		dis.forward(request, response);
+		request.getRequestDispatcher("taskedit.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
+		@SuppressWarnings("unused")
+		UserBean user = null;
+		
+		if (session != null && (user = (UserBean)session.getAttribute("userbean")) == null) {
+			session = null;
+		}
+		
+		if(session == null) {
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+			return;
+		}
 		request.setCharacterEncoding("UTF-8");
 		TaskEditDAO dao = new TaskEditDAO();
 		TaskBean updateTask = (TaskBean) session.getAttribute("updateTask");
@@ -86,15 +107,13 @@ public class taskEditServlet extends HttpServlet {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			RequestDispatcher Dis = request.getRequestDispatcher(url);
-			Dis.forward(request, response);
+			request.getRequestDispatcher(url).forward(request, response);
 		}
 		
 		if (resultnum == 1) {
 			url = "taskeditsuccess.jsp";
 		}
-		RequestDispatcher Dis = request.getRequestDispatcher(url);
-		Dis.forward(request, response);
+		request.getRequestDispatcher(url).forward(request, response);
 		
 	}
 
