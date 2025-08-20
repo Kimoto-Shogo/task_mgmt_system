@@ -37,7 +37,7 @@
 			<td><a href="taskEditServlet?task_id=<%=task.getTask_id()%>">編集</a></td>
 			
 
-			<td><a href="task-register-servlet?task_id=<%=task.getTask_id()%>">削除</a></td>
+			<td><a href="TaskDeleteServlet?task_id=<%=task.getTask_id()%>">削除</a></td>
 
 		
 		</tr>
