@@ -60,4 +60,3 @@ public class CommentServlet extends HttpServlet {
 		rd.forward(request, response);
 	}
 }
-
