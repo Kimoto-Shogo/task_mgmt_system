@@ -54,8 +54,9 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("userbean", userbean);
 
 			} else {
-				// 認証失敗
+				//ログイン失敗
 				url = "login-failure.jsp";
+	
 			}
 			
 			
