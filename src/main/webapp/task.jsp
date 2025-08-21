@@ -34,8 +34,10 @@
 			<td><%= task.getStatus_name()  %></td>
 			
 			<td><%= task.getMemo()  %></td>
-			<td><a href="taskEditServlet?task_id=<%=task.getTask_id()%>">編集</a></td>
 			
+			<td><a href="commentservlet?task_id=<%=task.getTask_id()%>">コメント</a></td>
+			
+			<td><a href="taskEditServlet?task_id=<%=task.getTask_id()%>">編集</a></td>
 
 			<td><a href="TaskDeleteServlet?task_id=<%=task.getTask_id()%>">削除</a></td>
 
