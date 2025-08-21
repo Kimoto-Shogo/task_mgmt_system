@@ -18,7 +18,7 @@
 	<table>
 		<tr>	
 		<th>タスク名</th>
-		<td><input type = text name = task_name size = "25" required>
+		<td><input type = text name = task_name size = "55" maxlength = 50 placeholder = "50文字以内" required>
 		<font color = "red">※必須項目</font></td>
 		</tr>
 		
@@ -76,7 +76,7 @@
 		
 		<tr>	
 		<th>メモ</th>
-		<td><input type = text name = memo size = 100></td>
+		<td><textarea name = memo placeholder = "100文字以内" cols = "55" rows = "4" maxlength = 100></textarea></td>
 		</tr>
 	</table><hr>
 	<input type = submit value = 登録>　
