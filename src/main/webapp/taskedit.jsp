@@ -47,7 +47,8 @@ table td {
 			<tr>
 				<td style="font-weight: bold;">タスク名</td>
 				<td><input type="text" name="task_name"
-					value="<%=updateTask.getTask_name()%>" placeholder="タスク名" maxlength="50" required></td>
+					value="<%=updateTask.getTask_name()%>" placeholder="タスク名"
+					maxlength="50" required></td>
 			</tr>
 			<tr>
 				<td style="font-weight: bold;">カテゴリ</td>

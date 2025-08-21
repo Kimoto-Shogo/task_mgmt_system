@@ -35,36 +35,37 @@ public class taskEditServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		@SuppressWarnings("unused")
 		UserBean user = null;
 
-		if (session != null && (user = (UserBean)session.getAttribute("userbean")) == null) {
+		if (session != null && (user = (UserBean) session.getAttribute("userbean")) == null) {
 			session = null;
 		}
 
-		if(session == null) {
+		if (session == null) {
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 			return;
 		}
 		request.setCharacterEncoding("UTF-8");
 		TaskEditDAO dao = new TaskEditDAO();
 		@SuppressWarnings("unchecked")
-		List<TaskBean> taskList = (ArrayList<TaskBean>)session.getAttribute("taskList");
+		List<TaskBean> taskList = (ArrayList<TaskBean>) session.getAttribute("taskList");
 
 		int task_id = Integer.parseInt(request.getParameter("task_id"));
 
 		for (TaskBean task : taskList) {
-			if (task.getTask_id()==task_id) {
+			if (task.getTask_id() == task_id) {
 				session.setAttribute("updateTask", task);
 			}
 		}
 
 		try {
-			session.setAttribute("categoryList",dao.CatedoryListSelect());
-			session.setAttribute("statusList",dao.StatusListSelect());
-			session.setAttribute("userList",dao.UserListSelect());
+			session.setAttribute("categoryList", dao.CatedoryListSelect());
+			session.setAttribute("statusList", dao.StatusListSelect());
+			session.setAttribute("userList", dao.UserListSelect());
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
@@ -75,19 +76,23 @@ public class taskEditServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		//セッション管理
 		HttpSession session = request.getSession(false);
 		@SuppressWarnings("unused")
 		UserBean user = null;
 
-		if (session != null && (user = (UserBean)session.getAttribute("userbean")) == null) {
+		if (session != null && (user = (UserBean) session.getAttribute("userbean")) == null) {
 			session = null;
 		}
 
-		if(session == null) {
+		if (session == null) {
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 			return;
 		}
+
+		//変更処理ここから
 		request.setCharacterEncoding("UTF-8");
 		TaskEditDAO dao = new TaskEditDAO();
 		TaskBean updateTask = (TaskBean) session.getAttribute("updateTask");
