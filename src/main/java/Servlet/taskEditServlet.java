@@ -63,13 +63,7 @@ public class taskEditServlet extends HttpServlet {
 			session = null;
 		}
 
-		// taskList が null または範囲外アクセス時 → 一覧画面に戻す
-		try {
-			taskList.get(task_id-1);
-		} catch (IndexOutOfBoundsException | NullPointerException e) {
-			request.getRequestDispatcher("TaskListServlet").forward(request, response);
-			return;
-		}
+		
 
 		// セッションが無効ならログイン画面へ
 		if (session == null) {
@@ -77,12 +71,19 @@ public class taskEditServlet extends HttpServlet {
 			return;
 		}
 
-		// 編集対象のタスクを探してセッションに保存
-		for (TaskBean task : taskList) {
-			if (task.getTask_id() == task_id) {
-				session.setAttribute("updateTask", task);
+		
+		// taskList が null または範囲外アクセス時 → 一覧画面に戻す
+			try {
+				// 編集対象のタスクを探してセッションに保存
+				for (TaskBean task : taskList) {
+					if (task.getTask_id() == task_id) {
+						session.setAttribute("updateTask", task);
+					}
+				}
+			} catch (NullPointerException e) {
+				request.getRequestDispatcher("TaskListServlet").forward(request, response);
+				return;
 			}
-		}
 
 		// DAOを使ってカテゴリ・ステータス・ユーザー一覧を取得しセッションに保存
 		TaskEditDAO dao = new TaskEditDAO();
