@@ -27,9 +27,7 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// セッションオブジェクトの取得
-		HttpSession session = request.getSession();//
-		
+
 		request.setCharacterEncoding("UTF-8");
 		String url = null; 
 		
@@ -49,12 +47,14 @@ public class LoginServlet extends HttpServlet {
 				// 認証成功
 				url = "menu.jsp";//trueだったらmenu.jspに行く
 
+				// セッションオブジェクトの取得
+				HttpSession session = request.getSession();//
+
 				// セッションスコープでユーザー情報を保存してあげる。
 				session.setAttribute("userbean", userbean);
 
 			} else {
 				//ログイン失敗
-				session.setAttribute("userbean", userbean);
 				url = "login-failure.jsp";
 	
 			}
