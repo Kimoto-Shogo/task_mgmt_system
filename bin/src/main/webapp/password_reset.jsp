@@ -1,9 +1,13 @@
-<%@page import="model.entity.UserBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="model.entity.UserBean"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<title>パスワード再設定画面</title>
+</head>
+<body>
+
 <%		session = request.getSession(false);
 		@SuppressWarnings("unused")
 		UserBean user = null;
@@ -17,10 +21,7 @@
 			return;
 		}
 		%>
-<meta charset="UTF-8">
-<title>パスワード再設定画面</title>
-</head>
-<body>
+
 	<h2>パスワード再設定</h2>
 	<form action="PasswordServlet" method="POST">
 		ユーザID：<input type="text" name="userid"><br> 
