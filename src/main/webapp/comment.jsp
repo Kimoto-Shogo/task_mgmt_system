@@ -17,7 +17,7 @@
 	<% if (commentList != null) {
 		for (CommentBean cb : commentList) { %>
 
-	<form action="commentservlet" method="get">
+	<form action="CommentServlet" method="GET">
 		<input type="hidden" name="task_id" value="<%= cb.getTask_id() %>">
 		<input type="hidden" name="user_id" value="<%= cb.getUser_id() %>">
 
@@ -35,7 +35,8 @@
 			
 		</table>
 		<br>
-	<% } } %>
+	<% } 
+	} %>
 
 		<h3>コメント追加</h3>
 		コメント：<input type="text" name="comment" size="100" maxlength="100" required><br><br>

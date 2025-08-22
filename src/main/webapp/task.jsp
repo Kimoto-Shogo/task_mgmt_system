@@ -35,7 +35,7 @@
 			
 			<td><%= task.getMemo()  %></td>
 			
-			<td><a href="commentservlet?task_id=<%=task.getTask_id()%>">コメント</a></td>
+			<td><a href="CommentServlet?task_id=<%=task.getTask_id()%>">コメント</a></td>
 			
 			<td><a href="taskEditServlet?task_id=<%=task.getTask_id()%>">編集</a></td>
 

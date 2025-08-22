@@ -56,11 +56,11 @@ public class CommentDAO {
 	}
 
 		
-		public int insertItem(CommentBean itemInfo)
+		public int insertComment(CommentBean itemInfo)
 				throws SQLException, ClassNotFoundException {
 
 			int processingNumber = 0;
-			String sql = "INSERT INTO t_comment(task_id, user_id, comment, update_datetime) VALUES (?, ?, ?, CURRENT_TIMESTAMP)";
+			String sql = "INSERT INTO t_comment(task_id, user_id, comment) VALUES (?, ?, ?)";
 			try (Connection con = ConnectionManager.getConnection();
 					PreparedStatement pstmt = con.prepareStatement(sql)) {
 
