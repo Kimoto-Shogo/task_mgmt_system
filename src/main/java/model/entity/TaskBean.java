@@ -17,6 +17,7 @@ public class TaskBean {
 	private String category_name;
 	private String user_name;
 	private String status_name;
+	
 	public int getTask_id() {
 		return task_id;
 	}
@@ -89,8 +90,4 @@ public class TaskBean {
 	public void setStatus_name(String status_name) {
 		this.status_name = status_name;
 	}
-	
-	
-	
-	
 }

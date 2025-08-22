@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+<<<<<<< HEAD
+            
+    
+    <wb-module deploy-name="task_mgmt_system">
+                        
+        
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+                
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/DAOTest"/>
+                        
+        
+        <property name="context-root" value="task_mgmt_system"/>
+                        
+        
+        <property name="java-output-path" value="/task_mgmt_system/build/classes"/>
+                    
+    
+    </wb-module>
+        
+
+=======
         
     <wb-module deploy-name="task_mgmt_system">
                 
@@ -13,4 +34,5 @@
             
     </wb-module>
     
+>>>>>>> 3c99cf8f92093bae5efd4c179a9979d63532be35
 </project-modules>
