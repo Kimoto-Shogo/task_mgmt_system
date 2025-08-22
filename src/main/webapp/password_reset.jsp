@@ -1,8 +1,22 @@
+<%@page import="model.entity.UserBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+<%		session = request.getSession(false);
+		@SuppressWarnings("unused")
+		UserBean user = null;
+		
+		if (session != null && (user = (UserBean)session.getAttribute("userbean")) == null) {
+			session = null;
+		}
+		
+		if(session == null) {
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+			return;
+		}
+		%>
 <meta charset="UTF-8">
 <title>パスワード再設定画面</title>
 </head>

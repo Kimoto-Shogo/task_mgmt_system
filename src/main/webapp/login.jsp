@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+session.invalidate();
+%>
 <meta charset="UTF-8">
 <title>ログイン画面</title>
 </head>

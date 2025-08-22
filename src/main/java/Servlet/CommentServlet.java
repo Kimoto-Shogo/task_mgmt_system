@@ -18,12 +18,22 @@ import model.entity.CommentBean;
 /**
  * Servlet implementation class CommentServlet
  */
-@WebServlet("/commentservlet")
+@WebServlet("/CommentServlet")
 public class CommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public CommentServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<CommentBean> commentList = new ArrayList<>();
 
 		CommentDAO dao = new CommentDAO();
@@ -42,7 +52,7 @@ public class CommentServlet extends HttpServlet {
 			co.setTask_id(taskId);
 
 			try {
-				dao.insertItem(co);
+				dao.insertComment(co);
 			} catch (SQLException | ClassNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -59,4 +69,12 @@ public class CommentServlet extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("comment.jsp");
 		rd.forward(request, response);
 	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
 }
