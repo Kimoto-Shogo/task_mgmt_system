@@ -3,6 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<title>メニュー画面</title>
+</head>
+<body>
+
 <%		session = request.getSession(false);
 		@SuppressWarnings("unused")
 		UserBean user = null;
@@ -16,10 +21,6 @@
 			return;
 		}
 		%>
-<meta charset="UTF-8">
-<title>メニュー画面</title>
-</head>
-<body>
 
 
 	<form action="task-register-servlet" method="GET">
