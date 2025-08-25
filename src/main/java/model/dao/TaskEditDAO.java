@@ -12,6 +12,10 @@ import model.entity.StatusBean;
 import model.entity.TaskBean;
 import model.entity.UserBean;
 
+/**
+ * タスク編集画面用DAO
+ * @author 山下
+ */
 public class TaskEditDAO {
 	
 	public int taskDataUpdate(TaskBean task) throws ClassNotFoundException, SQLException {
