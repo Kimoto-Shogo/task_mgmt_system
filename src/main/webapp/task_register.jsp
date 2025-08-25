@@ -7,8 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>タスク登録画面</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/task_register.css">
 </head>
-<body>
+<body class="scroll-text">
 	<%List<CategoryBean> categorybean = (List<CategoryBean>)session.getAttribute("category");%>
 	<%List<UserBean> userbean = (List<UserBean>)session.getAttribute("user"); %>
 	<%List<StatusBean> statusbean = (List<StatusBean>)session.getAttribute("status"); %>

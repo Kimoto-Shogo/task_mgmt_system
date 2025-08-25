@@ -13,9 +13,16 @@ import model.entity.StatusBean;
 import model.entity.TaskBean;
 import model.entity.UserBean;
 
-public class TaskRegisterDAO {
+/**m_category , m_user , m_status , t_task テーブルのDAO
+ * @author 木本
+ */
 
-	//カテゴリ情報の取得("category_id" , "category_name")
+public class TaskRegisterDAO {
+	/**すべてのカテゴリ情報の取得
+	 * @return"category_id" , "category_name"
+	 * @throws ClasNotFoundException
+	 * @throws SQLException
+	 */
 	public List<CategoryBean> categorycode() throws ClassNotFoundException, SQLException {
 		String sql = "SELECT * FROM m_category";
 		List<CategoryBean> list = new ArrayList<>();
@@ -36,8 +43,11 @@ public class TaskRegisterDAO {
 		return list;
 		}
 	}
-	
-	//ユーザ情報の取得("user_id" , "user_name")
+	/**すべてのユーザ情報の取得
+	 * @return "user_id" , "user_name"
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public List<UserBean> user() throws SQLException, ClassNotFoundException {
 		String sql = "SELECT * FROM m_user";
 		List<UserBean> list = new ArrayList<>();
@@ -61,8 +71,11 @@ public class TaskRegisterDAO {
 		}
 	}
 	
-	
-	//ステータスの取得("status_code" , "status_name")
+	/**すべてのステータスの取得
+	 * @return "status_code" , "status_name"
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public List<StatusBean> statuscode() throws SQLException, ClassNotFoundException {
 		String sql = "SELECT * FROM m_status";
 		List<StatusBean> list = new ArrayList<>();
@@ -85,8 +98,12 @@ public class TaskRegisterDAO {
 		}
 	}
 
+	/**タスクの登録をして、成功か失敗を"judg"で判定
+	 * @return int型
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	
-	//タスクの登録をして、成功か失敗を"judg"で判定
 	public int register(TaskBean tb) throws ClassNotFoundException, SQLException {
 		int judge = 0;
 		String sql = "INSERT INTO t_task (task_name , category_id , limit_date , user_id , status_code , memo) VALUES (? , ? , ? , ? , ? , ?);";

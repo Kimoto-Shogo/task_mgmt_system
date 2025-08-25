@@ -1,0 +1,5 @@
+@charset "UTF-8";
+.scroll-text {
+    white-space: nowrap;
+    overflow-x: auto;
+}

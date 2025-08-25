@@ -1,3 +1,6 @@
+/**task_mgmt_system
+ * Servlet.TaskRegisterServlet.java
+ */
 package Servlet;
 
 import java.io.IOException;
@@ -20,10 +23,15 @@ import model.entity.TaskBean;
 import model.entity.UserBean;
 
 /**
- * Servlet implementation class TaskRegisterServlet
+ * タスク登録情報の制御
+ * @author 木本
  */
+
 @WebServlet("/task-register-servlet")
 public class TaskRegisterServlet extends HttpServlet {
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		TaskRegisterDAO trdao = new TaskRegisterDAO();
@@ -69,6 +77,9 @@ public class TaskRegisterServlet extends HttpServlet {
 
 	
 	//タスク登録
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//エンコード
 		request.setCharacterEncoding("UTF-8");
