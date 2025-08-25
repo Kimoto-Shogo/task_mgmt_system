@@ -7,6 +7,7 @@
 session.invalidate();
 %>
 <meta charset="UTF-8">
+<link rel ="stylesheet" href ="login.css">
 <title>ログイン画面</title>
 </head>
 <body>

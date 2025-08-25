@@ -7,6 +7,11 @@ import java.sql.SQLException;
 
 import model.entity.UserBean;
 
+
+/**
+ * ログインの判定・パスワードの再設定
+ * ＠author 寺西
+ */
 public class UserDAO {
 
 	public UserBean loginCheck(UserBean bean) throws ClassNotFoundException, SQLException {
@@ -18,8 +23,8 @@ public class UserDAO {
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)) {
 
-			pstmt.setString(1, bean.getUser_id());//プレースホルダにbeanの値を入れてあげる。
-			pstmt.setString(2, bean.getPassword());
+			pstmt.setString(1,bean.getUser_id());//プレースホルダにbeanの値を入れてあげる。
+			pstmt.setString(2,bean.getPassword());
 			ResultSet res = pstmt.executeQuery();//sqlの実行
 
 			if (res.next()) {//一回の呼び出しならif文でOK

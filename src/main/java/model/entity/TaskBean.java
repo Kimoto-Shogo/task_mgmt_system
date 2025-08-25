@@ -3,6 +3,11 @@ package model.entity;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+/**
+ * タスクを表します
+ * t_taskのDTOであり、Beanオブジェクトです
+ * 松本
+ */
 public class TaskBean {
 
 	private int task_id;
