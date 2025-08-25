@@ -13,7 +13,8 @@ session.invalidate();
 <body>
 
 		<form action="LoginServlet" method="POST">
-		ユーザID：<input type="text" name="userid"><br>
+		<label for="userid">ユーザID：</label>
+		<input type="text" name="userid" class="input-box"><br>
 		パスワード：<input type="password" name="password">
 		<br><br>
 		<input type="submit" value="ログイン">
