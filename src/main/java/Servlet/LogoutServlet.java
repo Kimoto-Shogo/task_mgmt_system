@@ -11,8 +11,13 @@ import javax.servlet.http.HttpSession;
 
 import model.entity.UserBean;
 
+
+
 /**
  * Servlet implementation class LogourServlet
+ */
+/**ログアウトを判定した後セッションを放棄
+ * @author 寺西
  */
 @WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet {

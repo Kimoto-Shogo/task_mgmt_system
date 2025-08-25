@@ -1,5 +1,10 @@
 package model.entity;
 
+
+
+/**ユーザー情報を渡すクラス
+ *@author 寺西
+ */
 public class UserBean {
 	
 	private String user_id;	

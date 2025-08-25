@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 
 import model.entity.UserBean;
 
+/**UserDAOのテストコード
+ * @author 寺西
+ * 
+ */
 class UserDAOTest {
 
 	@Test
