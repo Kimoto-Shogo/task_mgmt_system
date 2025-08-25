@@ -9,6 +9,10 @@ import java.util.List;
 
 import model.entity.TaskBean;
 
+/**
+ * t_taskに3つのテーブルを内部結合したDAOです
+ * 松本
+ */
 public class TaskListDAO {
 	
 	public List<TaskBean> selectAll() throws ClassNotFoundException, SQLException{
