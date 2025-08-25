@@ -13,8 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import model.dao.UserDAO;
 import model.entity.UserBean;
 
+
 /**
  * Servlet implementation class PasswordServlet
+ */
+/**パスワードの再設定を判定し各画面に遷移する
+ * @author 寺西
  */
 @WebServlet("/PasswordServlet")
 public class PasswordServlet extends HttpServlet {

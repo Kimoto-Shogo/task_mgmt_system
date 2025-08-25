@@ -7,6 +7,11 @@ import java.sql.SQLException;
 
 import model.entity.UserBean;
 
+
+/**
+ * ログインの判定・パスワードの再設定
+ * ＠author 寺西
+ */
 public class UserDAO {
 
 	public UserBean loginCheck(UserBean bean) throws ClassNotFoundException, SQLException {
