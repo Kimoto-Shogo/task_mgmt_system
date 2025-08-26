@@ -43,5 +43,6 @@ if (session == null) {
 		</tr>
 	</table>
 </form>
+<input type="submit" formaction="CommentDisplayServlet" formmethod="post" value="コメント一覧に戻る">
 </body>
 </html>
