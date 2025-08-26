@@ -1,7 +1,11 @@
 // TaskDeleteDAO.java
 package model.dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import model.entity.TaskBean;
 
 public class TaskDeleteDAO {
