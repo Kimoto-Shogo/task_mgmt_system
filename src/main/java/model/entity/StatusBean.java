@@ -1,9 +1,15 @@
+/**StatusBean.java
+ * model.entity.StatusBean.java
+ */
 package model.entity;
 
+/**ステータス情報を表します。
+ * TaskRegisterのDTOであり、Beanオブジェクトです。
+ * @author 木本
+ */
 public class StatusBean {
 	private String status_code;
 	private String status_name;
-	
 	
 	public String getStatus_code() {
 		return status_code;
