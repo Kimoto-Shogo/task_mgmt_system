@@ -1,16 +1,19 @@
 package model.entity;
 
-
+import java.io.Serializable;
 
 /**ユーザー情報を渡すクラス
  *@author 寺西
  */
-public class UserBean {
+public class UserBean implements Serializable{
 	
 	private String user_id;	
 	private String password;
 	private String user_name;
 	
+	public UserBean() {
+		
+	}
 	
 	
 	public String getUser_id() {
