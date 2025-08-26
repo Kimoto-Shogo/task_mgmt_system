@@ -1,9 +1,15 @@
+/**CategoryBean.java
+ * model.entity.CategoryBean.java
+ */
 package model.entity;
 
+/**カテゴリ情報を表します。
+ * TaskRegisterのDTOであり、Beanオブジェクトです。
+ * @author 木本
+ */
 public class CategoryBean {
 	private int category_id;
 	private String category_name;
-	
 	
 	public int getCategory_id() {
 		return category_id;
