@@ -35,11 +35,26 @@
 			
 			<td><%= task.getMemo()  %></td>
 			
-			<td><a href="CommentServlet?task_id=<%=task.getTask_id()%>">コメント</a></td>
+			<td>
+				<form>
+				<input type="hidden" name="task_id" value="<%= task.getTask_id()%>">
+				<input type="submit" formaction="CommentDisplayServlet" formmethod="post" value="コメント">
+				</form>
+			</td>
 			
-			<td><a href="taskEditServlet?task_id=<%=task.getTask_id()%>">編集</a></td>
+			<td>
+				<form>
+				<input type="hidden" name="task_id" value="<%= task.getTask_id()%>">
+				<input type="submit" formaction="taskEditServlet" formmethod="get" value="編集">
+				</form>
+			</td>
 
-			<td><a href="TaskDeleteServlet?task_id=<%=task.getTask_id()%>">削除</a></td>
+			<td>
+				<form>
+				<input type="hidden" name="task_id" value="<%= task.getTask_id()%>">
+				<input type="submit" formaction="TaskDeleteServlet" formmethod="get" value="削除">
+				</form>
+			</td>
 
 		
 		</tr>
