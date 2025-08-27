@@ -5,18 +5,35 @@
 <head>
 <meta charset="UTF-8">
 <title>タスク登録完了画面</title>
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
 </head>
-<body>
-	<h2>タスク登録が完了しました。</h2><br>
-	
-	<%// セッションの無効化 %>
-	<%session.removeAttribute("category"); %>
-	<%session.removeAttribute("user"); %>
-	<%session.removeAttribute("status"); %>
-	
-	<form>
-		<input type = "submit" value = タスク登録画面 formaction = "task-register-servlet">
-		<input type = "submit" value = メニュー画面 formaction = "menu.jsp">
-	</form>
+<body class="bg-light">
+
+<%-- セッション情報の削除 --%>
+<%
+    session.removeAttribute("category");
+    session.removeAttribute("user");
+    session.removeAttribute("status");
+%>
+
+<div class="container mt-5">
+    <div class="alert alert-success text-center" role="alert">
+        <h2 class="mb-3">✅ タスク登録が完了しました。</h2>
+        <p>次に進む操作を選択してください。</p>
+    </div>
+
+    <div class="d-flex justify-content-center gap-3 mt-4">
+        <form action="task-register-servlet" method="get">
+            <button type="submit" class="btn btn-primary">タスク登録画面へ</button>
+        </form>
+        
+        <form action="menu.jsp" method="get">
+            <button type="submit" class="btn btn-secondary">メニュー画面へ</button>
+        </form>
+    </div>
+</div>
+
 </body>
 </html>
