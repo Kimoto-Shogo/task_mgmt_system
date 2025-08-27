@@ -6,8 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- BootsapのCSS読み込み -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <title>コメント画面</title>
-
 <%
 //ログイン確認ここから
 @SuppressWarnings("unused")
@@ -29,46 +30,60 @@ List<CommentBean> comList = (List<CommentBean>) session.getAttribute("comList");
 %>
 </head>
 <body>
-	<h2>コメント画面</h2>
-	<hr>
-	<br>
-	<%if(comList.isEmpty()) {%>
-	<h3>コメントはまだ投稿されていません。</h3>
-	<%}else{%>
-	<table style="text-align: center;">
-		<tr>
-			<th colspan="2">投稿データ</th>
-			<th>投稿者</th>
-			<th>コメントメッセージ</th>
-		</tr>
+	<div class="container mt-5">
+		<h2>コメント画面</h2>
+		<hr>
+		<br>
 		<%
-		for (CommentBean comment : comList) {
+		if (comList.isEmpty()) {
 		%>
-		<tr>
-			<!-- colspan -->
-			<td><%=comment.getComment_id()%></td>
-			<td><%=comment.getUpdate_datetime()%></td>
-			<td><%=comment.getUser_id() %></td>
-			<!-- colspanここまで -->
-			<td style="text-align: left;"><%=comment.getComment()%></td>
-			<td>
-				<%
-				if (comment.getUser_id().equals(user.getUser_id())) {
-				%>
-				<form action="commentdelete.jsp" method="post">
-					<input type="hidden" name="comment_id"
-						value="<%=comment.getComment_id()%>"> <input type="submit"
-						value="削除">
-				</form> <%}%>
-			</td>
-		</tr>
-		<%}%>
-	</table>
-	<%} %>
-	<form action="">
-		<input type="submit" formaction="CommentInsertServlet"
-			formmethod="get" value="コメントを書き込む"> <input type="submit"
-			formaction="TaskListServlet" formmethod="get" value="タスク一覧に戻る">
-	</form>
+		<h3>コメントはまだ投稿されていません。</h3>
+		<%
+		} else {
+		%>
+		<table class="table table-active">
+			<tr>
+				<th colspan="2">投稿データ</th>
+				<th>投稿者</th>
+				<th  class="w-50">コメント</th>
+				<th></th>	
+			</tr>
+			<%
+			for (CommentBean comment : comList) {
+			%>
+			<tr>
+				<!-- colspan -->
+				<td><%=comment.getComment_id()%></td>
+				<td><%=comment.getUpdate_datetime()%></td>
+				<!-- colspanここまで -->
+				<td><%=comment.getUser_id()%></td>
+				<td><%=comment.getComment()%></td>
+				<td>
+					<%
+					if (comment.getUser_id().equals(user.getUser_id())) {
+					%>
+					<form action="commentdelete.jsp" method="post">
+						<input type="hidden" class="btn btn-secondary mt-1" name="comment_id"
+							value="<%=comment.getComment_id()%>">
+						<input type="submit" class="btn btn-secondary" value="削除">
+					</form> <%
+ }
+ %>
+				</td>
+			</tr>
+			<%
+			}
+			%>
+		</table>
+		<%
+		}
+		%>
+		<form class="mb-5">
+			<input type="submit" class="btn btn-primary" formaction="CommentInsertServlet" 
+				formmethod="get" value="コメントを書き込む">
+			<input type="submit" class="btn btn-primary"
+				formaction="TaskListServlet" formmethod="get" value="タスク一覧に戻る">
+		</form>
+	</div>
 </body>
 </html>

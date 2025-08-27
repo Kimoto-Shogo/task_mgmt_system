@@ -7,7 +7,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<!-- BootsapのCSS読み込み -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<title>コメント削除画面</title>
 <%
 //ログイン確認ここから
 @SuppressWarnings("unused")
@@ -38,23 +40,28 @@ session.setAttribute("deletecomment", deletecomment);
 %>
 </head>
 <body>
-
-	<h2>以下のコメントを削除しますか？</h2>
-	<table style="text-align: center;">
-		<tr>
-			<th colspan="2">投稿データ</th>
-			<th>コメントメッセージ</th>
-		</tr>
-		<tr>
-			<td><%=deletecomment.getComment_id()%></td>
-			<!-- colspan -->
-			<td><%=deletecomment.getUpdate_datetime()%></td>
-			<!-- colspanここまで -->
-			<td><%=deletecomment.getComment()%></td>
-		</tr>
-	</table>
-	<form action="CommentDeleteServlet" method="post">
-		<input type="submit" value="削除">
-	</form>
+	<div class="container mt-5">
+		<h2>以下のコメントを削除しますか？</h2>
+		<table class="table table-active">
+			<tr>
+				<th colspan="2">投稿データ</th>
+				<th class="">コメント</th>
+			</tr>
+			<tr>
+				<!-- colspan -->
+				<td><%=deletecomment.getComment_id()%></td>
+				<td><%=deletecomment.getUpdate_datetime()%></td>
+				<!-- colspanここまで -->
+				<td class="w-75"><%=deletecomment.getComment()%></td>
+			</tr>
+		</table>
+		<form action="CommentDeleteServlet" method="post" >
+			<div class="d-flex justify-content-end">
+				<input type="submit" value="削除" class="btn btn-secondary mt-1">
+			</div>
+			<input type="submit" class="btn btn-primary"
+			formaction="CommentDisplayServlet" formmethod="get" value="コメント一覧に戻る">
+		</form>
+	</div>
 </body>
 </html>
