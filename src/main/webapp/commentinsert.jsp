@@ -27,7 +27,7 @@ if (session == null) {
 <title>コメント書込み画面</title>
 </head>
 <body>
-	<div class="container mt-5	">
+	<div class="container mt-5">
 		<h2>新規コメント書き込み画面</h2>
 		<br>
 		<hr>
