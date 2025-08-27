@@ -32,10 +32,13 @@ List<CommentBean> comList = (List<CommentBean>) session.getAttribute("comList");
 	<h2>コメント画面</h2>
 	<hr>
 	<br>
-
+	<%if(comList.isEmpty()) {%>
+	<h3>コメントはまだ投稿されていません。</h3>
+	<%}else{%>
 	<table style="text-align: center;">
 		<tr>
 			<th colspan="2">投稿データ</th>
+			<th>投稿者</th>
 			<th>コメントメッセージ</th>
 		</tr>
 		<%
@@ -45,6 +48,7 @@ List<CommentBean> comList = (List<CommentBean>) session.getAttribute("comList");
 			<!-- colspan -->
 			<td><%=comment.getComment_id()%></td>
 			<td><%=comment.getUpdate_datetime()%></td>
+			<td><%=comment.getUser_id() %></td>
 			<!-- colspanここまで -->
 			<td style="text-align: left;"><%=comment.getComment()%></td>
 			<td>
@@ -55,15 +59,12 @@ List<CommentBean> comList = (List<CommentBean>) session.getAttribute("comList");
 					<input type="hidden" name="comment_id"
 						value="<%=comment.getComment_id()%>"> <input type="submit"
 						value="削除">
-				</form> <%
- }
- %>
+				</form> <%}%>
 			</td>
 		</tr>
-		<%
-		}
-		%>
+		<%}%>
 	</table>
+	<%} %>
 	<form action="">
 		<input type="submit" formaction="CommentInsertServlet"
 			formmethod="get" value="コメントを書き込む"> <input type="submit"
