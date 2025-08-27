@@ -32,8 +32,8 @@ public class TaskListDAO {
 				+ "    t_task t1\r\n"
 				+ "INNER JOIN m_user t2 ON t1.user_id = t2.user_id\r\n"
 				+ "INNER JOIN m_status t3 ON t1.status_code = t3.status_code\r\n"
-				+ "INNER JOIN m_category t4 ON t1.category_id = t4.category_id;\r\n"
-				+ "";
+				+ "INNER JOIN m_category t4 ON t1.category_id = t4.category_id\r\n"
+				+ "ORDER BY t1.limit_date ASC";
 
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)){
