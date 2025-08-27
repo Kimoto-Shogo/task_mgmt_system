@@ -1,6 +1,6 @@
 package model.dao;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*; //テスト時にアサーション（条件チェック）を使うため
 
 import java.sql.SQLException;
 import java.util.List;
@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 
 import model.entity.TaskBean;
 
+/**
+ * タスク一覧の取得機能（selectAll()）が正しくデータを返すかどうかを検証
+ */
 public class TaskListDAOTest {
 
     @Test

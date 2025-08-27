@@ -21,8 +21,8 @@
 %>
 
 <div class="container mt-5">
-    <h1 class="mb-4 text-primary">タスク登録画面</h1>
-    <form action="task-register-servlet" method="post" class="border rounded p-4 bg-white shadow-sm">
+    <h1 class="mb-4 text-dark">タスク登録画面</h1>
+    <form action="task-register-servlet" method="post" class="border rounded p-4 bg-white shadow-lg">
         
         <div class="mb-3">
             <label for="task_name" class="form-label">タスク名 <span class="text-danger">※必須項目</span></label>
@@ -68,7 +68,7 @@
             <textarea name="memo" id="memo" class="form-control" rows="4" maxlength="100" placeholder="100文字以内"></textarea>
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3 d-flex justify-content-end gap-2">
             <button type="submit" class="btn btn-primary">登録</button>
             <button type="reset" class="btn btn-secondary">クリア</button>
         </div>
