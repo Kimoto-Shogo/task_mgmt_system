@@ -37,136 +37,97 @@ List<UserBean> userList = (ArrayList<UserBean>) session.getAttribute("userList")
 		}
 	}
 </script>
-<style type="text/css">
-/* テーブルデザイン */
-table {
-	text-align: center;
-	border: 1px solid black;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-}
 
-table td {
-	text-align: center;
-	border: 1px solid black;
-	border-left: 1px dotted black; /* 左右は点線に */
-	border-right: 1px dotted black;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-}
-</style>
 <meta charset="UTF-8">
 <title>タスク編集画面</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body class="container mt-5">
-<div class="card shadow p-4">
-	<h2 class="text-center md-4">タスク編集画面</h2>
-	
+	<div class="card shadow p-4">
+		<h2 class="text-center md-4">タスク編集画面</h2>
 
-	<!-- タスク編集フォーム -->
-	<form action="taskEditServlet" method="POST">
-		<div class="mb-3">
-		<label class="form-label fw-bold">タスクID</label>
-			<input type="text"class="form-control" value="<%=updateTask.getTask_id()%>"disabled>
-			</div>
-			
+
+		<!-- タスク編集フォーム -->
+		<form action="taskEditServlet" method="POST">
 			<div class="mb-3">
-				<label class="form-label fw-bold">タスク名<span clasa="text-danger">※必須</span></label>
-				<input type="text" name="task_name" class="form-control"value="<%=updateTask.getTask_name()%>" maxlength="50" required>
+				<label class="form-label fw-bold">タスクID</label> <input type="text"
+					class="form-control" value="<%=updateTask.getTask_id()%>" disabled>
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label fw-bold">タスク名<span
+					class="text-danger">※必須</span></label> <input type="text" name="task_name"
+					class="form-control" value="<%=updateTask.getTask_name()%>"
+					maxlength="50" required>
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label fw-bold">カテゴリ</label> <select
+					name="category_id" class="form-select" required>
+					<% for (CategoryBean category : categoryList) { %>
+					<option value="<%=category.getCategory_id()%>"
+						<% if (updateTask.getCategory_name().equals(category.getCategory_name()))  {%>
+						selected <% } %>>
+						<%=category.getCategory_name()%>
+					</option>
+					<% } %>
+				</select>
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label fw-bold">期限</label> <input type="date"
+					name="limit_date" class="form-control"
+					value="<%=updateTask.getLimit_date()%>" required>
+			</div>
+
+			<div class="md-3">
+				<label class="form-label fw-bold">担当者</label> <select name="user_id"
+					class="form-select" required>
+					<% for (UserBean user : userList) { %>
+					<option value="<%=user.getUser_id()%>"
+						<% if (updateTask.getUser_name().equals(user.getUser_name())) { %>
+						selected <% } %>>
+						<%=user.getUser_name()%>
+					</option>
+					<% } %>
+				</select>
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label fw-bold">ステータス</label> <select
+					name="status_code" class="form-select" required>
+					<% for (StatusBean status : statusList) { %>
+					<option value="<%=status.getStatus_code()%>"
+						<% if (updateTask.getStatus_name().equals(status.getStatus_name())) { %>
+						selected <%  } %>>
+						<%=status.getStatus_name()%>
+					</option>
+					<% } %>
+				</select>
+			</div>
+
+
+			<div class="mb-3">
+				<label class="form-label fw-bold">メモ</label>
+				<textarea name="memo" class="form-control" maxlength="100" rows="3"
+					placeholder="100文字まで"><%=updateTask.getMemo()%></textarea>
+			</div>
+
+			<!-- ボタンエリア -->
+			<div class="d-flex justify-content-end gap-2">
+				<button type="submit" class="btn btn-primary">更新</button>
+				<button type="reset" class="btn btn-secondary">取り消し</button>
 				</div>
 				
-				<div class="mb-3">
-				<label class="form-label fw-bold">カテゴリ</label>
-				<select name="category_id" class="form-select" required>
-				<!-- IDは表示のみ（入力不可） -->
-				<td><%=updateTask.getTask_id()%></td>
-			</tr>
-			<tr>
-				<td style="font-weight: bold;">タスク名</td>
-				<td>※1 <!-- 入力必須、最大50文字 --> <input type="text" name="task_name"
-					value="<%=updateTask.getTask_name()%>" placeholder="タスク名"
-					maxlength="50" required></td>
-			</tr>
-			<tr>
-				<td style="font-weight: bold;">カテゴリ</td>
-				<td>
-					<!-- カテゴリのプルダウン生成 --> <select name="category_id" required>
-						<%
-						for (CategoryBean category : categoryList) {
-						%>
-						<option value="<%=category.getCategory_id()%>"
-							<%// 更新対象タスクのカテゴリ名と一致すればselected属性を付与
-if (updateTask.getCategory_name().equals(category.getCategory_name())) {%>
-							selected <%}%>>
-							<%=category.getCategory_name()%>
-						</option>
-						<%
-						}
-						%>
-				</select>
-				</td>
-			</tr>
-			<tr>
-				<td style="font-weight: bold;">期限</td>
-				<td>
-					<!-- 日付入力必須 --> <input type="date" name="limit_date"
-					value="<%=updateTask.getLimit_date()%>" required>
-				</td>
-			</tr>
-			<tr>
-				<td style="font-weight: bold;">担当者</td>
-				<td>
-					<!-- 担当者プルダウン --> <select name="user_id" required>
-						<%
-						for (UserBean user : userList) {
-						%>
-						<option value="<%=user.getUser_id()%>"
-							<%// 担当者名が一致すればselected
-if (updateTask.getUser_name().equals(user.getUser_name())) {%>
-							selected <%}%>>
-							<%=user.getUser_name()%>
-						</option>
-						<%
-						}
-						%>
-				</select>
-				</td>
-			</tr>
-			<tr>
-				<td style="font-weight: bold;">ステータス</td>
-				<td>
-					<!-- ステータスプルダウン --> <select name="status_code" required>
-						<%
-						for (StatusBean status : statusList) {
-						%>
-						<option value="<%=status.getStatus_code()%>"
-							<%// ステータス名が一致すればselected
-if (updateTask.getStatus_name().equals(status.getStatus_name())) {%>
-							selected <%}%>>
-							<%=status.getStatus_name()%>
-						</option>
-						<%
-						}
-						%>
-				</select>
-				</td>
-			</tr>
-			<tr>
-				<td style="font-weight: bold;">メモ</td>
-				<td>※1 <!-- 最大100文字まで入力可能 --> <textarea name="memo"
-						placeholder="100文字まで" maxlength="100" cols="" rows=""><%=updateTask.getMemo()%></textarea>
-				</td>
-			</tr>
-		</table>
-		<!-- 更新と取り消しボタン -->
-		<input type="submit" value="更新"> <input type="reset"
-			value="取り消し">
-	</form>
+				<div class="text-center">
+					<button type="button" class="btn btn-outline-dark"
+					onclick="onClick()">メニューに戻る</button>
+			</div>
+		</form>
 
-	<!-- メニューに戻るボタン（JavaScript confirmを利用） -->
-	<form action="menu.jsp">
-		<input type="button" value="メニューに戻る" onclick="onClick()">
-	</form>
+		<div class="mt-3 text-muted small">※[&lt;] [&gt;] [&amp;]
+			[&quot;] [&#39;]は自動的に?に置換されます</div>
+	</div>
 
-	<!-- 注意事項 -->
-	<p>※1:[&lt;] [&gt;] [&amp;] [&quot;] [&#39;]は自動的に?に置換されます</p>
 </body>
 </html>
