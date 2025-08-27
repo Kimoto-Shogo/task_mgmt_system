@@ -87,7 +87,7 @@ public class CommentInsertServlet extends HttpServlet {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}catch (NullPointerException e) {
-			request.getRequestDispatcher("CommentDisplayServlet").forward(request, response);
+			response.sendRedirect("CommentDisplayServlet");
 		}
 
 	}
