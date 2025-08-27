@@ -56,16 +56,26 @@ table td {
 <meta charset="UTF-8">
 <title>タスク編集画面</title>
 </head>
-<body>
-	<h1>タスク編集画面</h1>
-	<hr>
-	<br>
+<body class="container mt-5">
+<div class="card shadow p-4">
+	<h2 class="text-center md-4">タスク編集画面</h2>
+	
 
 	<!-- タスク編集フォーム -->
 	<form action="taskEditServlet" method="POST">
-		<table>
-			<tr>
-				<td style="font-weight: bold;">タスクID</td>
+		<div class="mb-3">
+		<label class="form-label fw-bold">タスクID</label>
+			<input type="text"class="form-control" value="<%=updateTask.getTask_id()%>"disabled>
+			</div>
+			
+			<div class="mb-3">
+				<label class="form-label fw-bold">タスク名<span clasa="text-danger">※必須</span></label>
+				<input type="text" name="task_name" class="form-control"value="<%=updateTask.getTask_name()%>" maxlength="50" required>
+				</div>
+				
+				<div class="mb-3">
+				<label class="form-label fw-bold">カテゴリ</label>
+				<select name="category_id" class="form-select" required>
 				<!-- IDは表示のみ（入力不可） -->
 				<td><%=updateTask.getTask_id()%></td>
 			</tr>
