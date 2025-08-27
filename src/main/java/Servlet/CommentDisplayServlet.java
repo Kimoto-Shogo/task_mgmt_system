@@ -77,7 +77,7 @@ public class CommentDisplayServlet extends HttpServlet {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}catch (NullPointerException e) {
-			response.sendRedirect("CommentDisplayServlet");
+			response.sendRedirect("TaskListServlet");
 		}
 		request.getRequestDispatcher("commentdisplay.jsp").forward(request, response);
 	}
