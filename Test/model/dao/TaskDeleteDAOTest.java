@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.SQLException;   // ← 追加（assertThrows で使う）
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.List;
@@ -16,7 +15,7 @@ import model.entity.TaskBean;
 
 class TaskDeleteDAOTest {
 
-    /** 既存タスクを作って削除 → 1件削除 & 一覧から消えていること */
+    /**  既存タスクを作って削除 → 1件削除 & 一覧から消えていること  */
     @Test
     void delete_existing_task_returns_1_and_actually_deleted() throws Exception {
         String uniqueName = "DELTEST_" + System.currentTimeMillis();

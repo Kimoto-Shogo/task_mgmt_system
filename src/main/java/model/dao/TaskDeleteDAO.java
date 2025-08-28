@@ -19,7 +19,7 @@ public class TaskDeleteDAO {
         }
     }
 
-    /** 削除確認表示用にタスク1件の詳細を取得（JOINで名称も取る） */
+    /**  削除確認表示用にタスク1件の詳細を取得（JOINで名称も取る）  */
     public TaskBean findDetailById(int taskId) throws SQLException, ClassNotFoundException {
         String sql =
             "SELECT t.task_id, t.task_name, t.category_id, t.limit_date, t.user_id, " +
