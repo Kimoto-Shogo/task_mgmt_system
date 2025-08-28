@@ -76,7 +76,7 @@ List<UserBean> userList = (ArrayList<UserBean>) session.getAttribute("userList")
 
 			<div class="mb-3">
 				<label class="form-label fw-bold">期限</label> <input type="date"
-					name="limit_date" class="form-control"
+					name="limit_date" class="form-control" id="datepicker"
 					value="<%=updateTask.getLimit_date()%>" required>
 			</div>
 
@@ -128,6 +128,19 @@ List<UserBean> userList = (ArrayList<UserBean>) session.getAttribute("userList")
 		<div class="mt-3 text-muted small">※[&lt;] [&gt;] [&amp;]
 			[&quot;] [&#39;]は自動的に?に置換されます</div>
 	</div>
+
+<!-- 日付設定 -->
+<script>
+    window.onload = function() {
+        var getToday = new Date();
+        var y = getToday.getFullYear();
+        var m = getToday.getMonth() + 1;
+        var d = getToday.getDate();
+        var today = y + "-" + m.toString().padStart(2,'0') + "-" + d.toString().padStart(2,'0');
+        document.getElementById("datepicker").value = today;
+        document.getElementById("datepicker").min = today;
+    }
+</script>
 
 </body>
 </html>
