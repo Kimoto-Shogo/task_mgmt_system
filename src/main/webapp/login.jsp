@@ -21,12 +21,12 @@ session.invalidate();
 				<div class="mb-3">
 					<label for="userid" class="form-label">ユーザID：</label>
 					<!-- form-control Bootstrapのフォームデザイン適用（幅100%、角丸、枠線つき） -->
-					<input type="text" class="form-control" id="userid" name="userid">
+					<input type="text" class="form-control" id="userid" name="userid" required>
 				</div>
 
 				<div class="mb-3">
 					<label for="password" class="form-label">パスワード:</label> <input
-						type="password" class="form-control" id="password" name="password">
+						type="password" class="form-control" id="password" name="password"required>
 					
 				</div>
 				<!--  btn btn-primay w-100-->
