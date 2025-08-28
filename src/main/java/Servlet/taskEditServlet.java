@@ -19,6 +19,7 @@ import model.entity.UserBean;
 
 /**
  * タスク編集画面用サーブレット
+ * @author 山下
  */
 @WebServlet("/taskEditServlet")
 public class taskEditServlet extends HttpServlet {
@@ -55,6 +56,7 @@ public class taskEditServlet extends HttpServlet {
 			return;
 		}
 
+		//ログイン確認ここから
 		@SuppressWarnings("unused")
 		UserBean user = null;
 
@@ -63,27 +65,25 @@ public class taskEditServlet extends HttpServlet {
 			session = null;
 		}
 
-		
-
 		// セッションが無効ならログイン画面へ
 		if (session == null) {
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 			return;
 		}
+		//ログイン確認ここまで
 
-		
 		// taskList が null または範囲外アクセス時 → 一覧画面に戻す
-			try {
-				// 編集対象のタスクを探してセッションに保存
-				for (TaskBean task : taskList) {
-					if (task.getTask_id() == task_id) {
-						session.setAttribute("updateTask", task);
-					}
+		try {
+			// 編集対象のタスクを探してセッションに保存
+			for (TaskBean task : taskList) {
+				if (task.getTask_id() == task_id) {
+					session.setAttribute("updateTask", task);
 				}
-			} catch (NullPointerException e) {
-				request.getRequestDispatcher("TaskListServlet").forward(request, response);
-				return;
 			}
+		} catch (NullPointerException e) {
+			request.getRequestDispatcher("TaskListServlet").forward(request, response);
+			return;
+		}
 
 		// DAOを使ってカテゴリ・ステータス・ユーザー一覧を取得しセッションに保存
 		TaskEditDAO dao = new TaskEditDAO();

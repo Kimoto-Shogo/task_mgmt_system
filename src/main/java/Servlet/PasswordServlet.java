@@ -13,17 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 import model.dao.UserDAO;
 import model.entity.UserBean;
 
+
 /**
  * Servlet implementation class PasswordServlet
+ */
+/**パスワードの再設定を判定し各画面に遷移する
+ * @author 寺西
  */
 @WebServlet("/PasswordServlet")
 public class PasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 
-	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

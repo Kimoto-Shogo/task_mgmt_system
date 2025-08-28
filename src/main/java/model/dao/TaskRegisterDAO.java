@@ -13,9 +13,16 @@ import model.entity.StatusBean;
 import model.entity.TaskBean;
 import model.entity.UserBean;
 
-public class TaskRegisterDAO {
+/**m_category , m_user , m_status , t_task テーブルのDAO
+ * @author 木本
+ */
 
-	//カテゴリ情報の取得("category_id" , "category_name")
+public class TaskRegisterDAO {
+	/**すべてのカテゴリ情報の取得
+	 * @return"category_id" , "category_name"
+	 * @throws ClasNotFoundException
+	 * @throws SQLException
+	 */
 	public List<CategoryBean> categorycode() throws ClassNotFoundException, SQLException {
 		String sql = "SELECT * FROM m_category";
 		List<CategoryBean> list = new ArrayList<>();

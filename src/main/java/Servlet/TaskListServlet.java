@@ -16,6 +16,10 @@ import javax.servlet.http.HttpSession;
 import model.dao.TaskListDAO;
 import model.entity.TaskBean;
 
+/**
+ * タスクを一覧表示を制御するためのServletです
+ * 松本
+ */
 @WebServlet("/TaskListServlet")
 public class TaskListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
